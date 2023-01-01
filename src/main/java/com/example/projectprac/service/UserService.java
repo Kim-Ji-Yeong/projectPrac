@@ -2,6 +2,8 @@ package com.example.projectprac.service;
 
 import com.example.projectprac.domain.dto.User.UserJoinResponse;
 import com.example.projectprac.domain.dto.entity.User;
+import com.example.projectprac.exception.AppException;
+import com.example.projectprac.exception.ErrorCode;
 import com.example.projectprac.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class UserService {
         //userName 중복 check
         userRepository.findByUserName(userName)
                 .ifPresent(user -> {
-                    throw new RuntimeException(userName + "는 이미 있습니다.");
+                    throw new AppException(ErrorCode.USERNAME_DUPLICATED, userName + "는 이미 있습니다.");
                 });
         //저장
         User user = User.builder()

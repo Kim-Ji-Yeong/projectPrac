@@ -6,6 +6,7 @@ import com.example.projectprac.exception.AppException;
 import com.example.projectprac.exception.ErrorCode;
 import com.example.projectprac.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encoder;
 
     public UserJoinResponse join(String userName, String password){
 
@@ -24,7 +26,7 @@ public class UserService {
         //저장
         User user = User.builder()
                 .userName(userName)
-                .password(password)
+                .password(encoder.encode(password))
                 .build();
         userRepository.save(user);
 

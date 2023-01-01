@@ -1,6 +1,6 @@
 package com.example.projectprac.repository;
 
-import com.example.projectprac.domain.User.User;
+import com.example.projectprac.domain.dto.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

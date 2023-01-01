@@ -1,4 +1,4 @@
-package com.example.projectprac.domain.User;
+package com.example.projectprac.domain.dto.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
